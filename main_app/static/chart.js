@@ -20,16 +20,55 @@ color_dictionary = [
 document.addEventListener('DOMContentLoaded', function() {
 
     bgcolor = color_dictionary.slice(0,values.length)
-    var ctx = document.getElementById("myChart").getContext('2d');
-    var myChart = new Chart(ctx, {
+    var ctx1 = document.getElementById("pieChart").getContext('2d');
+    var pieChart = new Chart(ctx1, {
       type: 'pie',
       data: {
         labels: labels,
         datasets: [{
-          backgroundColor: 
-          bgcolor,
+          backgroundColor: bgcolor,
           data: values
         }]
       }
     });
+
+    var ctx2 = document.getElementById("barChart").getContext('2d');
+    var options = {
+        scales: {
+            xAxes: [{
+                display: true,
+                gridLines: {
+                    offsetGridLines: false
+                }
+            }],
+            yAxes: [{
+                display: false,
+                ticks: {
+                  min: 0
+                },
+                gridLines: {
+                    offsetGridLines: false
+                }
+            }]
+        }
+    }
+    var barChart = new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'mood',
+          backgroundColor: bgcolor,
+          data: values
+        }]
+      },
+      options: options
+
+    });
 })
+
+
+
+
+
+
